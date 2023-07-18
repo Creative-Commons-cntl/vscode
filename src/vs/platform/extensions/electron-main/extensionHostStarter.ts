@@ -90,7 +90,8 @@ export class ExtensionHostStarter implements IDisposable, IExtensionHostStarter 
 			...opts,
 			type: 'extensionHost',
 			entryPoint: 'vs/workbench/api/node/extensionHostProcess',
-			args: ['--skipWorkspaceStorageLock'],
+			// Refs https://github.com/nodejs/node/issues/40702
+			args: ['--skipWorkspaceStorageLock', '--dns-result-order=ipv4first'],
 			execArgv: opts.execArgv,
 			allowLoadingUnsignedLibraries: true,
 			forceAllocationsToV8Sandbox: true,
